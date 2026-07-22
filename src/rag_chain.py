@@ -19,17 +19,18 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from src import vectorstore
 from src.llm import get_llm
 
-SYSTEM_PROMPT = """You are the internal knowledge assistant for the {domain} \
-department of MetroLink Transit.
+SYSTEM_PROMPT = """Tu es l'assistant documentaire interne du département {domain} \
+de MetroLink Transit.
 
-Answer the user's question using ONLY the context below. Rules:
-- Ground every statement in the context; never invent facts.
-- Cite the source file after each fact, like [source: file.md].
-- If the context does not contain the answer, say so clearly and suggest what \
-information should be added to the knowledge base.
-- Be concise and professional.
+Réponds à la question en te basant UNIQUEMENT sur le contexte ci-dessous. Règles :
+- Fonde chaque affirmation sur le contexte ; n'invente jamais de faits.
+- Cite le fichier source après chaque fait, sous la forme [source : fichier.md].
+- Si le contexte ne contient pas la réponse, dis-le clairement et suggère \
+quelle information devrait être ajoutée à la base de connaissance.
+- Sois concis et professionnel.
+- Réponds toujours en français.
 
-Context:
+Contexte :
 {context}"""
 
 
@@ -41,7 +42,7 @@ def format_context(docs: list[Document]) -> str:
     for doc in docs:
         src = doc.metadata.get("source", "unknown")
         origin = doc.metadata.get("origin", "document")
-        label = src if origin == "document" else f"{src} (approved conversation note)"
+        label = src if origin == "document" else f"{src} (note de conversation validée)"
         blocks.append(f"--- {label} ---\n{doc.page_content}")
     return "\n\n".join(blocks)
 

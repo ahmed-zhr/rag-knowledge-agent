@@ -27,20 +27,21 @@ from src.llm import get_llm
 
 SUMMARY_PROMPT = ChatPromptTemplate.from_messages([
     ("system",
-     "You distill conversations into knowledge-base notes for the {domain} "
-     "department.\n"
-     "Write a short factual note (5-10 lines) capturing ONLY reusable "
-     "knowledge from this conversation: decisions, procedures, facts, "
-     "corrections. Exclude greetings, questions and anything uncertain. "
-     "Write in the third person, no preamble."),
-    ("human", "Conversation transcript:\n\n{transcript}"),
+     "Tu synthétises des conversations en notes pour la base de connaissance "
+     "du département {domain}.\n"
+     "Rédige une note factuelle courte (5 à 10 lignes) capturant UNIQUEMENT "
+     "les connaissances réutilisables de cette conversation : décisions, "
+     "procédures, faits, corrections. Exclus les salutations, les questions "
+     "et tout ce qui est incertain. Écris à la troisième personne, en "
+     "français, sans préambule."),
+    ("human", "Transcription de la conversation :\n\n{transcript}"),
 ])
 
 
 def render_transcript(history: list[dict]) -> str:
     """Flatten UI history into a plain transcript for the summarizer."""
     return "\n".join(
-        f"{'User' if m['role'] == 'user' else 'Assistant'}: {m['content']}"
+        f"{'Utilisateur' if m['role'] == 'user' else 'Assistant'} : {m['content']}"
         for m in history
     )
 
