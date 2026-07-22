@@ -1,0 +1,27 @@
+# --- Secrets: NEVER commit these ---
+.env
+*.key
+credentials.json
+
+# --- Generated data (rebuildable, not source) ---
+chroma_db/
+knowledge_audit.jsonl
+
+# --- Private documents: keep real company data out of the repo ---
+data/private/
+data/internal/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
