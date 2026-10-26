@@ -62,7 +62,7 @@ OpenAI or Ollama for generation · Streamlit UI
 ## Quickstart
 
 ```bash
-git clone https://github.com/<your-username>/rag-knowledge-agent.git
+git clone https://github.com/<ahmed-zhr>/rag-knowledge-agent.git
 cd rag-knowledge-agent
 
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
